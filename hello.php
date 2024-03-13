@@ -1,12 +1,13 @@
 <?php
-// Loops
+// Control Structure
 
-$articles=[
-  'a'=>"First",
-  'b'=>"Second",
-  'c'=>"Read this!"
-];
+$articles=["a","b","c"];
 
-foreach($articles as $index=>$article){
-  echo $index.' - '.$article, ", ";
+//var_dump(empty($articles));
+
+if(empty($articles)){
+  echo "The array is empty";
+}else{
+  echo "The array is NOT empty";
 }
+
