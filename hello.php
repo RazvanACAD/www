@@ -1,8 +1,12 @@
 <?php
 // Loops
 
-$articles=["First","Second","Read this!"];
+$articles=[
+  'a'=>"First",
+  'b'=>"Second",
+  'c'=>"Read this!"
+];
 
-foreach($articles as $article){
-  echo $article, ",";
+foreach($articles as $index=>$article){
+  echo $index.' - '.$article, ", ";
 }
