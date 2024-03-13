@@ -1,13 +1,10 @@
 <?php
 // Control Structure
 
-$articles=["a","b","c"];
+$age=21;
 
-//var_dump(empty($articles));
-
-if(empty($articles)){
-  echo "The array is empty";
+if($age >= 21){
+  echo "Cond is true";
 }else{
-  echo "The array is NOT empty";
+  echo "Cond is false";
 }
-
