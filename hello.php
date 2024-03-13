@@ -1,34 +1,39 @@
 <?php
+
+// Arrays
+
 /*
-$message="Hello Again!";
-$count =3;
-$price=1.99;
+$articles=[
+  1=>"First post",  
+  3=>"Second post",
+  "Read this!"
+];
 
-echo $message;
-var_dump($message);
-var_dump($count);
-var_dump($price);
+$articles=[
+  "first"=>"First post",  
+  "second"=>"Second post",
+  "third"=>"Read this!"
+];
+// echo $articles; - error
+var_dump($articles["second"]);
 
-$is_admin=true;
-$data=null;
+$count=3;
+$price=6.99;
+$values=[
+  "message"=>"Hello World!",
+  "count"=>150,
+  "pi"=>3.14,
+  "status"=>true,
+  "result"=>null
+];
+$values1=[$count,$price];
 
-var_dump($is_admin,$data);
+var_dump($values);*/
 
-$count =10;
-$size=2;
-$price=2.95;
-$quantity=5;
+$articles=[
+  ["title"=>"First post", "content"=>"This is the first post"],
+  ["title"=>"Second post", "content"=>"This is the second post"],
+  ["title"=>"Read this!", "content"=>"You must read this article!"]
+];
 
-var_dump($count+5);
-var_dump($count * $size);
-var_dump($price*$quantity);*/
-
-$message='Hello';
-$name="Bogdan";
-
-$start="3 o'clock";
-$end='4 o\'clock';
-
-$days="Monday\nThuesday\nWednesday";
-
-echo "Hello {$name}";
+var_dump($articles[1]["title"]);
