@@ -1,10 +1,9 @@
 <?php
 // Control Structure
 
-$age=21;
+$month=1;
 
-if($age >= 21){
-  echo "Cond is true";
-}else{
-  echo "Cond is false";
+while($month <=12){
+  echo $month. ", ";
+  $month = $month + 1;
 }
