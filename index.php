@@ -25,28 +25,6 @@ if($results===false){
 
 }
 
-/*
-$name = "Dave";
-$hour =11;
-
-$articles = [
-  [
-    "title"=>"First Post",
-    "content"=>"This is the first post"
-  ],
-  [
-    "title"=>"Another Post",
-    "content"=>"This is another post"
-  ],
-  [
-    "title"=>"Read This!",
-    "content"=>"YOU MUST READ THIS NOW!!!!"
-  ],
-  [
-    "title"=>"Hello!",
-    "content"=>"READ THIS NOW!!!!"
-  ]
-]*/
 ?>
 
 <!DOCTYPE html>
