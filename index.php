@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require 'includes/database.php';
 
 //echo "Connected succesfully";
 
@@ -17,7 +17,7 @@ if($results===false){
 
 ?>
 
-<?php require 'header.php'; ?>
+<?php require 'includes/header.php'; ?>
   <?php if(empty($articles)): ?>
     <p>No articles found</p>
   <?php else: ?>
@@ -32,6 +32,6 @@ if($results===false){
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
-<?php require 'footer.php'; ?>
+<?php require 'includes/footer.php'; ?>
 
 
