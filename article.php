@@ -6,21 +6,17 @@ require 'includes/article.php';
 $conn = getDB();
 
 if (isset($_GET['id'])) {
-
     $article = getArticle($conn, $_GET['id']);
-
 } else {
-  
-  $article = null;
-
+    $article = null;
 }
 
 ?>
 <?php require 'includes/header.php'; ?>
 
-<?php if ($article === null): ?>
+<?php if ($article === null) : ?>
     <p>Article not found.</p>
-<?php else: ?>
+<?php else : ?>
 
     <article>
         <h2><?= htmlspecialchars($article['title']); ?></h2>
