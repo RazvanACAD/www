@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My website</title>
-  </head>
-  <body>
+<html>
+<head>
+    <title>My blog</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
     <header>
-      <h1>My Blog</h1>
+        <h1>My blog</h1>
     </header>
 
     <main>
