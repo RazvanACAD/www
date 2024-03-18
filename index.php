@@ -2,6 +2,8 @@
 
 require 'includes/database.php';
 
+session_start();
+
 $conn = getDB();
 
 $sql = "SELECT *
@@ -18,6 +20,8 @@ if ($results === false) {
 
 ?>
 <?php require 'includes/header.php'; ?>
+
+<?php var_dump($_SESSION); ?>
 
 <a href="new-article.php">New article</a>
 
