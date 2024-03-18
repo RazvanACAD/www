@@ -2,6 +2,7 @@
 
 require 'includes/database.php';
 require 'includes/article.php';
+require 'includes/url.php';
 
 $title = '';
 $content = '';
@@ -13,12 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $published_at = $_POST['published_at'];
 
-    $errors = validateArticle($title, $content, $published_at);
+    $errors = validateArticle($title, $content, $published_at);   // NEW
 
     if (empty($errors)) {
 
         $conn = getDB();
-
+        
         $sql = "INSERT INTO article (title, content, published_at) VALUES (?, ?, ?)";
 
         $stmt = mysqli_prepare($conn, $sql);
@@ -39,13 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $id = mysqli_insert_id($conn);
 
-                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-                    $protocol = 'https';
-                } else {
-                    $protocol = 'http';
-                }
-                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/article.php?id=$id");
-                exit;
+                redirect("/article.php?id=$id");
 
             } else {
 

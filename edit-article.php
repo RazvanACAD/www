@@ -2,6 +2,7 @@
 
 require 'includes/database.php';
 require 'includes/article.php';
+require 'includes/url.php';
 
 $conn = getDB();
 
@@ -10,6 +11,7 @@ if (isset($_GET['id'])) {
     $article = getArticle($conn, $_GET['id']);
 
     if ($article) {
+
         $id = $article['id'];
         $title = $article['title'];
         $content = $article['content'];
@@ -32,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = validateArticle($title, $content, $published_at);
 
     if (empty($errors)) {
-
-        $sql = "UPDATE article 
-                SET title = ?, 
-                    content = ?, 
+        
+        $sql = "UPDATE article
+                SET title = ?,
+                    content = ?,
                     published_at = ?
                 WHERE id = ?";
 
@@ -55,15 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
 
-                $id = mysqli_insert_id($conn);
-
-                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-                    $protocol = 'https';
-                } else {
-                    $protocol = 'http';
-                }
-                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/article.php?id=$id");
-                exit;
+                redirect("/article.php?id=$id");
 
             } else {
 
@@ -71,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             }
         }
-
     }
 }
 
