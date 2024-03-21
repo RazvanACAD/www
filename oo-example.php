@@ -1,15 +1,17 @@
 <?php
 
 require 'Item.php';
+require 'Book.php';
 
-$my_item = new Item('Huge');
+$item = new Item();
+$item->name = "TV";
 
-$count = 0;
+echo $item->getListingDescription();
 
-$count++;
+echo "<br>";
 
-define ('MAXIMUM', 100);
+$book = new Book();
+$book->name = 'Hamlet';
+$book->author = 'Shakespeare';
 
-define('COLOUR', 'red');
-
-echo Item::MAX_LENGTH;
+echo $book->getListingDescription();
