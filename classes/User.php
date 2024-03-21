@@ -8,6 +8,23 @@
 class User
 {
   /**
+   * Unique Identifier
+   * @var integer
+   */
+  public $id;
+
+  /**
+   * Unique username
+   * @var string
+   */
+  public $username;
+
+  /**
+   * Password
+   * @var string
+   */
+  public $password;
+  /**
    * Authenticate a user by username and password
    * 
    * @param string $username Username
