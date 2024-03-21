@@ -8,6 +8,27 @@
 class Article
 {
     /**
+     * Unique identifier
+     * @var integer
+     */
+    public $id;
+    /**
+     * The article title
+     * @var string
+     */
+    public $title;
+    /**
+     * The article content
+     * @var string
+     */
+    public $content;
+    /**
+     * The publication date and time
+     * @var datetime
+     */
+    public $published_at;
+
+    /**
      * Get all the articles
      *
      * @param object $conn Connection to the database
@@ -32,7 +53,7 @@ class Article
      * @param integer $id the article ID
      * @param string $columns Optional list of columns for the select, defaults to *
      *
-     * @return mixed An associative array containing the article with that ID, or null if not found
+     * @return mixed An object of this class, or null if not found
      */
     public static function getByID($conn, $id, $columns = '*')
     {
@@ -43,9 +64,11 @@ class Article
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Article');
+
         if ($stmt->execute()) {
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch();
 
         }
     }
