@@ -39,7 +39,7 @@ if ($stmt === false) {
 
     if (mysqli_stmt_execute($stmt)) {
 
-        redirect("/index.php");
+        redirect("/www/index.php");
 
     } else {
 

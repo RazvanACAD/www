@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
 
-                redirect("/article.php?id=$id");
+                redirect("/www/article.php?id=$id");
 
             } else {
 
