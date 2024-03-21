@@ -22,42 +22,45 @@ if (isset($_GET['id'])) {
     die("id not supplied, article not found");
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$sql = "DELETE FROM article
-        WHERE id = ?";
+    $sql = "DELETE FROM article
+            WHERE id = ?";
 
-$stmt = mysqli_prepare($conn, $sql);
+    $stmt = mysqli_prepare($conn, $sql);
 
-if ($stmt === false) {
+    if ($stmt === false) {
 
-    echo mysqli_error($conn);
-
-} else {
-
-    mysqli_stmt_bind_param($stmt, "i", $id);
-
-    if (mysqli_stmt_execute($stmt)) {
-
-        redirect("/www/index.php");
+        echo mysqli_error($conn);
 
     } else {
 
-        echo mysqli_stmt_error($stmt);
+        mysqli_stmt_bind_param($stmt, "i", $id);
 
+        if (mysqli_stmt_execute($stmt)) {
+
+            redirect("/index.php");
+
+        } else {
+
+            echo mysqli_stmt_error($stmt);
+
+        }
     }
 }
-}
+
 ?>
-<?php require 'includes/header.php';?>
+<?php require 'includes/header.php'; ?>
 
-  <h2>Delete article</h2>
+<h2>Delete article</h2>
 
-  <form method="post" action="delete-article.php?id=<?= $article['id'];?>">
-    <p>Are you sure?</p>
+    <form method="post">
 
-    <button>Delete</button>
-    <a href="article.php?id=<?= $article['id'];?>">Cancel</a>
-  </form>
+        <p>Are you sure?</p>
 
-<?php require 'includes/footer.php';?>
+        <button>Delete</button>
+        <a href="article.php?id=<?= $article['id']; ?>">Cancel</a>
+
+    </form>
+
+<?php require 'includes/footer.php'; ?>

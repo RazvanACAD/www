@@ -7,9 +7,10 @@ require 'includes/auth.php';
 
 session_start();
 
-if( ! isLoggedIn()){
+if (! isLoggedIn()) {
 
     die("unauthorised");
+
 }
 
 $title = '';
@@ -22,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $published_at = $_POST['published_at'];
 
-    $errors = validateArticle($title, $content, $published_at);   // NEW
+    $errors = validateArticle($title, $content, $published_at);
 
     if (empty($errors)) {
 

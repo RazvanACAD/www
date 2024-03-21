@@ -9,7 +9,6 @@
  *
  * @return mixed An associative array containing the article with that ID, or null if not found
  */
-
 function getArticle($conn, $id, $columns = '*')
 {
     $sql = "SELECT $columns
@@ -17,7 +16,6 @@ function getArticle($conn, $id, $columns = '*')
             WHERE id = :id";
 
     $stmt = $conn->prepare($sql);
-
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
@@ -25,9 +23,7 @@ function getArticle($conn, $id, $columns = '*')
         return $stmt->fetch(PDO::FETCH_ASSOC);
 
     }
-    
 }
-
 
 /**
  * Validate the article properties

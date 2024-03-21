@@ -20,7 +20,7 @@
 
     <div>
         <label for="published_at">Publication date and time</label>
-        <input name="published_at" id="published_at" value="<?= htmlspecialchars($published_at); ?>">
+        <input type="datetime-local" name="published_at" id="published_at" value="<?= htmlspecialchars($published_at); ?>">
     </div>
 
     <button>Save</button>
