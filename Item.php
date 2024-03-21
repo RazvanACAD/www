@@ -4,7 +4,10 @@ class Item
 {
   public $name;
 
-  public function getListingDescription(){
-    return $this->name;
+  protected $code = 1234;
+
+  public function getListingDescription()
+  {
+    return "Item: " . $this->name;
   } 
 }
