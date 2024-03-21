@@ -2,25 +2,17 @@
 
 class Item
 {
+  const MAX_LENGTH = 24;
 
   public $name;
   public $description = "This is the default";
-  public static $count = 0;
-
-  public function __construct($name, $description)
-  {
-    $this->name=$name;
-    $this->description=$description;
-
-    static::$count++;
-  }
 
   public function getName(){
     return $this->name;
   }
 
-  public static function showCount(){
-    echo static::$count;
+  public function setName(){
+    $this->name=$name;
   }
 
 }

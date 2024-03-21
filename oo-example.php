@@ -2,10 +2,14 @@
 
 require 'Item.php';
 
-$my_item = new Item('Huge', 'A big item');
+$my_item = new Item('Huge');
 
-Item::showCount();
+$count = 0;
 
-$my_item->name="A new name";
+$count++;
 
-echo $my_item->getName();
+define ('MAXIMUM', 100);
+
+define('COLOUR', 'red');
+
+echo Item::MAX_LENGTH;
