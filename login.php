@@ -4,12 +4,12 @@ require 'includes/init.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $conn = require 'includes/db.php'; 
+    $conn = require 'includes/db.php';
 
-    if (User::authenticate($conn, $_POST['username'],$_POST['password'])) {
-
-        Auth::login();
+    if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
         
+        Auth::login();
+
         Url::redirect('/');
 
     } else {
@@ -43,4 +43,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button>Log in</button>
 
 </form>
+
 <?php require 'includes/footer.php'; ?>

@@ -12,16 +12,17 @@
 
     <nav>
         <ul>
-            <li><a href="/www/">Home</a></li>
-            <?php if(Auth::isLoggedIn()): ?>
+            <li><a href="/">Home</a></li>
 
-                <li><a href="/www/admin/">Admin</a></li>
-                <li><a href="/www/logout.php">Log out</a></li>
+            <?php if (Auth::isLoggedIn()) : ?>
+                
+                <li><a href="/admin/">Admin</a></li>
+                <li><a href="/logout.php">Log out</a></li>
 
             <?php else : ?>
+                
+                <li><a href="/login.php">Log in</a></li>
 
-                <li><a href="/www/login.php">Log in</a></li>
-            
             <?php endif; ?>
         </ul>
     </nav>

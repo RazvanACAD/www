@@ -11,8 +11,6 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 ?>
 <?php require 'includes/header.php'; ?>
 
-<p><a href="new-article.php">New article</a></p>
-
 <?php if (empty($articles)) : ?>
     <p>No articles found.</p>
 <?php else : ?>
