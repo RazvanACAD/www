@@ -1,23 +1,21 @@
 <?php
 
-require 'includes/init.php';
+require '../includes/init.php';
 
-$conn = require 'includes/db.php';
+Auth::requireLogin();
+
+$conn = require '../includes/db.php';
 
 if (isset($_GET['id'])) {
 
-    $article = Article::getById($conn, $_GET['id']);
+    $article = Article::getByID($conn, $_GET['id']);
 
-    if (!$article) {
-
+    if ( ! $article) {
         die("article not found");
-
     }
 
 } else {
-
     die("id not supplied, article not found");
-
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,19 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $article->title = $_POST['title'];
     $article->content = $_POST['content'];
     $article->published_at = $_POST['published_at'];
- 
+
     if ($article->update($conn)) {
 
-        Url::redirect("/article.php?id={$article->id}");
+        Url::redirect("/admin/article.php?id={$article->id}");
 
     }
 }
 
 ?>
-<?php require 'includes/header.php'; ?>
+<?php require '../includes/header.php'; ?>
 
 <h2>Edit article</h2>
 
 <?php require 'includes/article-form.php'; ?>
 
-<?php require 'includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>
