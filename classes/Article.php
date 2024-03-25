@@ -199,26 +199,24 @@ class Article
             return false;
         }
     }
-
-    /**
+/**
      * Set the article categories
-     * 
+     *
      * @param object $conn Connection to the database
      * @param array $ids Category IDs
-     * 
+     *
      * @return void
      */
-    public function setCategories($conn, $ids){
-
-        if($ids){
+    public function setCategories($conn, $ids)
+    {
+        if ($ids) {
 
             $sql = "INSERT IGNORE INTO article_category (article_id, category_id)
                     VALUES ";
 
             $values = [];
 
-            foreach($ids as $id){
-
+            foreach ($ids as $id) {
                 $values[] = "({$this->id}, ?)";
             }
 
@@ -226,14 +224,31 @@ class Article
 
             $stmt = $conn->prepare($sql);
 
-            foreach($ids as $i => $id){
-               
+            foreach ($ids as $i => $id) {
                 $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
-                
             }
-            
+
             $stmt->execute();
         }
+
+        $sql = "DELETE FROM article_category
+                WHERE article_id = {$this->id}";
+
+        if ($ids) {
+
+            $placeholders = array_fill(0, count($ids), '?');
+
+            $sql .= " AND category_id NOT IN (" . implode(", ", $placeholders) . ")";
+
+        }
+
+        $stmt = $conn->prepare($sql);
+
+        foreach ($ids as $i => $id) {
+            $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
     }
 
     /**
