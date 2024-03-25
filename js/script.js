@@ -1,6 +1,5 @@
-/**
- * Send links of class "delete" via post after a confirmation dialog
- */
+import $, { ajax } from "jquery";
+
 $("a.delete").on("click", function (e) {
   e.preventDefault();
 
@@ -33,4 +32,18 @@ $("#formArticle").validate({
       dateTime: true,
     },
   },
+});
+
+$("button.publish").on("click", function (e) {
+  var id = $(this).data("id");
+  var button = $(this);
+  alert(id);
+  $,
+    ajax({
+      url: "www/admin/publish-article.php",
+      type: "POST",
+      data: { id: id },
+    }).done(function (data) {
+      button.parent().html(data);
+    });
 });
