@@ -20,18 +20,12 @@ if (isset($_GET['id'])) {
     <article>
         <h2><?= htmlspecialchars($article[0]['title']); ?></h2>
 
-        <?php if($article[0]['category_name']) : ?>
-
+        <?php if ($article[0]['category_name']) : ?>
             <p>Categories:
-
-                <?php foreach ($article as $a): ?>
-
-                    <?= htmlspecialchars($a['category_name']);?>
-
+                <?php foreach ($article as $a) : ?>
+                    <?= htmlspecialchars($a['category_name']); ?>
                 <?php endforeach; ?>
-
             </p>
-
         <?php endif; ?>
 
         <?php if ($article[0]['image_file']) : ?>
@@ -42,7 +36,7 @@ if (isset($_GET['id'])) {
     </article>
 
     <a href="edit-article.php?id=<?= $article[0]['id']; ?>">Edit</a>
-    <a href="delete-article.php?id=<?= $article[0]['id']; ?>">Delete</a>
+    <a class="delete" href="delete-article.php?id=<?= $article[0]['id']; ?>">Delete</a>
     <a href="edit-article-image.php?id=<?= $article[0]['id']; ?>">Edit image</a>
 
 <?php else : ?>

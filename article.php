@@ -18,18 +18,12 @@ if (isset($_GET['id'])) {
     <article>
         <h2><?= htmlspecialchars($article[0]['title']); ?></h2>
 
-        <?php if($article[0]['category_name']) : ?>
-
+        <?php if ($article[0]['category_name']) : ?>
             <p>Categories:
-
-                <?php foreach ($article as $a): ?>
-
-                    <?= htmlspecialchars($a['category_name']);?>
-
+                <?php foreach ($article as $a) : ?>
+                    <?= htmlspecialchars($a['category_name']); ?>
                 <?php endforeach; ?>
-
             </p>
-
         <?php endif; ?>
 
         <?php if ($article[0]['image_file']) : ?>

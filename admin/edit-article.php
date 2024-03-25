@@ -19,6 +19,7 @@ if (isset($_GET['id'])) {
 }
 
 $category_ids = array_column($article->getCategories($conn), 'id');
+
 $categories = Category::getAll($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

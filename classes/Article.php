@@ -72,12 +72,13 @@ class Article
      */
     public static function getPage($conn, $limit, $offset)
     {
-        $sql = "SELECT a.* , category.name AS category_name
-                FROM (SELECT *
-                FROM article
-                ORDER BY published_at
-                LIMIT :limit
-                OFFSET :offset) AS a
+        $sql = "SELECT a.*, category.name AS category_name
+                FROM (
+                    SELECT *
+                    FROM article
+                    ORDER BY published_at
+                    LIMIT :limit
+                    OFFSET :offset) AS a
                 LEFT JOIN article_category
                 ON a.id = article_category.article_id
                 LEFT JOIN category
@@ -92,16 +93,17 @@ class Article
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        // Consolidate the article records into a single element for each article,
+        // putting the category names into an array
         $articles = [];
 
         $previous_id = null;
 
-        foreach($results as $row){
+        foreach ($results as $row) {
 
             $article_id = $row['id'];
 
-            if($article_id != $previous_id){
-
+            if ($article_id != $previous_id) {
                 $row['category_names'] = [];
 
                 $articles[$article_id] = $row;
@@ -113,7 +115,6 @@ class Article
         }
 
         return $articles;
-
     }
 
     /**
@@ -145,14 +146,14 @@ class Article
 
     /**
      * Get the article record based on the ID along with associated categories, if any
-     * 
+     *
      * @param object $conn Connection to the database
-     * @param integer $id The article ID
-     * 
+     * @param integer $id the article ID
+     *
      * @return array The article data with categories
      */
-    public static function getWithCategories($conn, $id){
-
+    public static function getWithCategories($conn, $id)
+    {
         $sql = "SELECT article.*, category.name AS category_name
                 FROM article
                 LEFT JOIN article_category
@@ -171,19 +172,19 @@ class Article
 
     /**
      * Get the article's categories
-     * 
+     *
      * @param object $conn Connection to the database
-     * 
+     *
      * @return array The category data
      */
-    public function getCategories($conn){
-
+    public function getCategories($conn)
+    {
         $sql = "SELECT category.*
                 FROM category
                 JOIN article_category
                 ON category.id = article_category.category_id
                 WHERE article_id = :id";
-        
+
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
@@ -227,7 +228,8 @@ class Article
             return false;
         }
     }
-/**
+
+    /**
      * Set the article categories
      *
      * @param object $conn Connection to the database
@@ -295,7 +297,7 @@ class Article
 
         if ($this->published_at != '') {
             $date_time = date_create_from_format('Y-m-d H:i:s', $this->published_at);
-
+            
             if ($date_time === false) {
 
                 $this->errors[] = 'Invalid date and time';
@@ -378,7 +380,7 @@ class Article
     {
         return $conn->query('SELECT COUNT(*) FROM article')->fetchColumn();
     }
-
+    
     /**
      * Update the image file property
      *
@@ -389,15 +391,15 @@ class Article
      */
     public function setImageFile($conn, $filename)
     {
-       $sql = "UPDATE article
-               SET image_file = :image_file
-               WHERE id = :id";
+        $sql = "UPDATE article
+                SET image_file = :image_file
+                WHERE id = :id";
 
-       $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql);
 
-       $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-       $stmt->bindValue(':image_file', $filename, $filename == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':image_file', $filename, $filename == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
-       return $stmt->execute();
+        return $stmt->execute();
     }
 }
