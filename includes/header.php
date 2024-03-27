@@ -3,29 +3,33 @@
 <head>
     <title>My blog</title>
     <meta charset="utf-8">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
    
 </head>
 <body>
-
+<div class="container">
     <header>
         <h1>My blog</h1>
     </header>
 
     <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/www/">Home</a></li>
 
             <?php if (Auth::isLoggedIn()) : ?>
                 
-                <li><a href="/admin/">Admin</a></li>
-                <li><a href="/logout.php">Log out</a></li>
+                <li class="nav-item"><a class="nav-link" href="/www/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/www/logout.php">Log out</a></li>
 
             <?php else : ?>
                 
-                <li><a href="/login.php">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="/www/login.php">Log in</a></li>
 
             <?php endif; ?>
+
+            <li class="nav-item"><a class="nav-link" href="/www/contact.php">Contact</a></li>
         </ul>
     </nav>
 

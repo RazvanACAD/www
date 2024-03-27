@@ -27,14 +27,14 @@
         <legend>Categories</legend>
 
         <?php foreach ($categories as $category) : ?>
-            <div>
-                <input type="checkbox" name="category[]" value="<?= $category['id'] ?>" id="category<?= $category['id'] ?>"
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category[]" value="<?= $category['id'] ?>" id="category<?= $category['id'] ?>"
                        <?php if (in_array($category['id'], $category_ids)) :?>checked<?php endif; ?>>
-                <label for="category<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></label>
+                <label class="form-check-label" for="category<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></label>
             </div>
         <?php endforeach; ?>
     </fieldset>
 
-    <button>Save</button>
+    <button class="btn">Save</button>
 
 </form>
