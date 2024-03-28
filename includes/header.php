@@ -3,34 +3,35 @@
 <head>
     <title>My blog</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>My blog</h1>
-    </header>
 
-    <nav>
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="/www/">Home</a></li>
+    <div class="container">
 
-            <?php if (Auth::isLoggedIn()) : ?>
-                
-                <li class="nav-item"><a class="nav-link" href="/www/admin">Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="/www/logout.php">Log out</a></li>
+        <header>
+            <h1>My blog</h1>
+        </header>
 
-            <?php else : ?>
-                
-                <li class="nav-item"><a class="nav-link" href="/www/login.php">Log in</a></li>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="/www/">Home</a></li>
 
-            <?php endif; ?>
+                <?php if (Auth::isLoggedIn()) : ?>
+                    
+                    <li class="nav-item"><a class="nav-link" href="/www/admin/">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/www/logout.php">Log out</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="/www/contact.php">Contact</a></li>
-        </ul>
-    </nav>
+                <?php else : ?>
+                    
+                    <li class="nav-item"><a class="nav-link" href="/www/login.php">Log in</a></li>
 
-    <main>
+                <?php endif; ?>
+
+                <li class="nav-item"><a class="nav-link" href="/www/contact.php">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main>

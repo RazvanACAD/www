@@ -67,12 +67,13 @@ class Article
      * @param object $conn Connection to the database
      * @param integer $limit Number of records to return
      * @param integer $offset Number of records to skip
+     * @param boolean $only_published Optionally restrict to published articles only, default false
      *
      * @return array An associative array of the page of article records
      */
     public static function getPage($conn, $limit, $offset, $only_published = false)
     {
-        $condition = $only_published ? 'WHERE published_at IS NOT NULL' : '';
+        $condition = $only_published ? ' WHERE published_at IS NOT NULL' : '';
 
         $sql = "SELECT a.*, category.name AS category_name
                 FROM (
@@ -152,6 +153,7 @@ class Article
      *
      * @param object $conn Connection to the database
      * @param integer $id the article ID
+     * @param boolean $only_published Optionally restrict to published articles only, default false
      *
      * @return array The article data with categories
      */
@@ -165,10 +167,8 @@ class Article
                 ON article_category.category_id = category.id
                 WHERE article.id = :id";
 
-        if($only_published){
-
-            $sql .= 'AND article.published_at IS NOT NULL';
-
+        if ($only_published) {
+            $sql .= ' AND article.published_at IS NOT NULL';
         }
 
         $stmt = $conn->prepare($sql);
@@ -382,14 +382,15 @@ class Article
      * Get a count of the total number of records
      *
      * @param object $conn Connection to the database
+     * @param boolean $only_published Optionally restrict to published articles only, default false
      *
      * @return integer The total number of records
      */
     public static function getTotal($conn, $only_published = false)
     {
-        $condition = $only_published ? 'WHERE published_at IS NOT NULL' : '';
+        $condition = $only_published ? ' WHERE published_at IS NOT NULL' : '';
 
-        return $conn->query('SELECT COUNT(*) FROM article $condition')->fetchColumn();
+        return $conn->query("SELECT COUNT(*) FROM article$condition")->fetchColumn();
     }
     
     /**
@@ -416,15 +417,15 @@ class Article
 
     /**
      * Publish the article, setting the published_at field to the current date and time
-     * 
+     *
      * @param object $conn Connection to the database
-     * 
-     * @return mixed The published at date and time if succesful, null otherwise
+     *
+     * @return mixed The published at date and time if successful, null otherwise
      */
-    public function publish($conn){
-
+    public function publish($conn)
+    {
         $sql = "UPDATE article
-                SET published_at = :pubished_at
+                SET published_at = :published_at
                 WHERE id = :id";
 
         $stmt = $conn->prepare($sql);
@@ -432,13 +433,10 @@ class Article
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         $published_at = date("Y-m-d H:i:s");
-
         $stmt->bindValue(':published_at', $published_at, PDO::PARAM_STR);
 
-        if($stmt->execute()){
-
+        if ($stmt->execute()) {
             return $published_at;
-            
         }
     }
 }

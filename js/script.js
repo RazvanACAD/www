@@ -1,5 +1,6 @@
-import $, { ajax } from "jquery";
-
+/**
+ * Send links of class "delete" via post after a confirmation dialog
+ */
 $("a.delete").on("click", function (e) {
   e.preventDefault();
 
@@ -12,6 +13,9 @@ $("a.delete").on("click", function (e) {
   }
 });
 
+/**
+ * Add a method to validate a date time string
+ */
 $.validator.addMethod(
   "dateTime",
   function (value, element) {
@@ -20,13 +24,16 @@ $.validator.addMethod(
   "Must be a valid date and time"
 );
 
+/**
+ * Validate the article form
+ */
 $("#formArticle").validate({
   rules: {
     title: {
-      require: true,
+      required: true,
     },
     content: {
-      require: true,
+      required: true,
     },
     published_at: {
       dateTime: true,
@@ -34,16 +41,44 @@ $("#formArticle").validate({
   },
 });
 
+/**
+ * Handle the publish button for publishing articles
+ */
 $("button.publish").on("click", function (e) {
   var id = $(this).data("id");
   var button = $(this);
-  alert(id);
-  $,
-    ajax({
-      url: "www/admin/publish-article.php",
-      type: "POST",
-      data: { id: id },
-    }).done(function (data) {
+
+  $.ajax({
+    url: "/www/admin/publish-article.php",
+    type: "POST",
+    data: { id: id },
+  })
+    .done(function (data) {
       button.parent().html(data);
+    })
+    .fail(function (data) {
+      alert("An error occured");
     });
+});
+
+/**
+ * Show the date and time picker for the published at field
+ */
+$("#published_at").datetimepicker({
+  format: "Y-m-d H:i:s",
+});
+
+$("#formContact").validate({
+  rules: {
+    email: {
+      required: true,
+      email: true,
+    },
+    subject: {
+      required: true,
+    },
+    message: {
+      required: true,
+    },
+  },
 });

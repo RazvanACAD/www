@@ -1,6 +1,6 @@
 <?php
 
-require '../includes.init.php';
+require '../includes/init.php';
 
 Auth::requireLogin();
 
@@ -10,4 +10,4 @@ $article = Article::getByID($conn, $_POST['id']);
 
 $published_at = $article->publish($conn);
 
-?><time><?= $published_at?></time>
+?><time><?= $published_at ?></time>

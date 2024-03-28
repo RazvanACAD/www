@@ -21,12 +21,10 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
                 <article>
                     <h2><a href="article.php?id=<?= $article['id']; ?>"><?= htmlspecialchars($article['title']); ?></a></h2>
 
-                    <time datetime="<?= $article['published_at'];?>">
-                        <?php
-                            $datetime = new DateTime($article['published_at']);
-                            echo $datetime->format("j F, Y");
-                        ?>
-                    </time>
+                    <time datetime="<?= $article['published_at'] ?>"><?php
+                        $datetime = new DateTime($article['published_at']);
+                        echo $datetime->format("j F, Y");
+                    ?></time>
 
                     <?php if ($article['category_names']) : ?>
                         <p>Categories:
@@ -35,7 +33,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
                             <?php endforeach; ?>
                         </p>
                     <?php endif; ?>
-
+                    
                     <p><?= htmlspecialchars($article['content']); ?></p>
                 </article>
             </li>
