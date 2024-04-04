@@ -33,7 +33,7 @@
                 <label class="form-check-label" for="category<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></label>
             </div>
         <?php endforeach; ?>
-        <a href="new-category.php">Add new category</a>
+        
     </fieldset>
 
     <button class="btn">Save</button>

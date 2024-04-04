@@ -10,7 +10,7 @@ try {
         UNIQUE INDEX username (username)
     )";
     $conn->exec($sql);
-    echo " 'user' It's here ";
+    echo " 'user' It's here";
     
     $sql = "CREATE TABLE IF NOT EXISTS article_code (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -37,8 +37,8 @@ try {
         article_id INT(11) UNSIGNED,
         category_id INT(11) UNSIGNED,
         PRIMARY KEY(article_id, category_id),
-        FOREIGN KEY (article_id) REFERENCES test(id) ON DELETE CASCADE,
-        FOREIGN KEY (category_id) REFERENCES test_category(id) ON DELETE CASCADE
+        FOREIGN KEY (article_id) REFERENCES article_code(id) ON DELETE CASCADE,
+        FOREIGN KEY (category_id) REFERENCES category_code(id) ON DELETE CASCADE
     )";
     $conn->exec($sql);
     echo "'article_category' It's here";
