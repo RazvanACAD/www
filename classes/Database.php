@@ -33,21 +33,20 @@ class Database
 
     /**
      * Constructor
-     * 
+     *
      * @param string $host Hostname
      * @param string $name Database name
      * @param string $user Username
      * @param string $password Password
-     * 
+     *
      * @return void
      */
-    public function __construct($host, $name, $user, $password){
-
+    public function __construct($host, $name, $user, $password)
+    {
         $this->db_host = $host;
         $this->db_name = $name;
         $this->db_user = $user;
         $this->db_pass = $password;
-
     }
 
     /**
@@ -57,7 +56,6 @@ class Database
      */
     public function getConn()
     {
-
         $dsn = 'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';charset=utf8';
 
         try {

@@ -2,6 +2,8 @@
 
 require 'includes/init.php';
 
+require 'includes/create_table.php';
+
 $conn = require 'includes/db.php';
 
 $paginator = new Paginator($_GET['page'] ?? 1, 4, Article::getTotal($conn, true));
@@ -29,7 +31,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
                     <?php if ($article['category_names']) : ?>
                         <p>Categories:
                             <?php foreach ($article['category_names'] as $name) : ?>
-                                <?= htmlspecialchars($name); ?>
+                                <?= !empty($name) ? htmlspecialchars($name) : 'No category' ?>
                             <?php endforeach; ?>
                         </p>
                     <?php endif; ?>

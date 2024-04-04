@@ -310,15 +310,7 @@ class Article
             if ($date_time === false) {
 
                 $this->errors[] = 'Invalid date and time';
-
-            } else {
-
-                $date_errors = date_get_last_errors();
-
-                if ($date_errors['warning_count'] > 0) {
-                    $this->errors[] = 'Invalid date and time';
-                }
-            }
+            } 
         }
 
         return empty($this->errors);
@@ -372,10 +364,10 @@ class Article
                 $this->id = $conn->lastInsertId();
                 return true;
             }
-
         } else {
             return false;
         }
+        return false;
     }
 
     /**

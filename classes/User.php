@@ -51,4 +51,29 @@ class User
             return password_verify($password, $user->password);
         }
     }
+
+    /**
+     * Create a new user
+     *
+     * @param object $conn Connection to the database
+     * @param string $username Username
+     * @param string $password Password
+     *
+     * @return object The new user
+     */
+    public static function create($conn, $username, $password)
+    {
+        $sql = "INSERT INTO user (username, password)
+                VALUES (:username, :password)";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+        $stmt->execute();
+
+        if($user = $stmt->fetch()) {
+            return $user;
+        }
+    }
 }

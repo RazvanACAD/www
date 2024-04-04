@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Configuration settings
+ */
+
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'cms');
 define('DB_USER', 'cms_www');

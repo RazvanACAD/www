@@ -3,9 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/PHPMailer-master/src/Exception.php';
-require 'vendor/PHPMailer-master/src/PHPMailer.php';
-require 'vendor/PHPMailer-master/src/SMTP.php';
+require 'vendor/PHPMailer/src/Exception.php';
+require 'vendor/PHPMailer/src/PHPMailer.php';
+require 'vendor/PHPMailer/src/SMTP.php';
 
 require 'includes/init.php';
 
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Username = SMTP_USER;
             $mail->Password = SMTP_PASS;
             $mail->SMTPSecure = 'tls';
-            $mail->Port = 465;
+            $mail->Port = 587;
 
             $mail->setFrom('sender@example.com');
             $mail->addAddress('recipient@example.com');
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if (! empty($errors)) : ?>
         <ul>
             <?php foreach ($errors as $error) : ?>
-                <li><?= $error ?></li>
+                <li><?= $error ?></li>    
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
