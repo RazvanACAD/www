@@ -6,7 +6,7 @@ Auth::requireLogin();
 
 $conn = require '../includes/db.php';
 
-$paginator = new Paginator($_GET['page'] ?? 1, 6, Article::getTotal($conn));
+$paginator = new Paginator($_GET['page'] ?? 1, 4, Article::getTotal($conn));
 
 $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
@@ -15,14 +15,11 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
 <h2>Administration</h2>
 
-
 <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="new-article.php">New article</a>
-    <a class="navbar-brand" href="new-category.php">New category</a>
-  </div>
-</nav>
-
+        <div class="container-fluid">
+            <a class="navbar-brand" href="new-article.php">+New article</a>
+        </div>
+    </nav>
 
 <?php if (empty($articles)) : ?>
     <p>No articles found.</p>
@@ -33,11 +30,12 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
             <tr>
                 <th>Title</th>
                 <th>Published</th>
+                
             </tr>
         </thead>
         <tbody>
             <?php foreach ($articles as $article) : ?>
-                <tr>
+                <tr> 
                     <td>
                         <a href="article.php?id=<?= $article['id']; ?>"><?= htmlspecialchars($article['title']); ?></a>
                     </td>
@@ -49,15 +47,20 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
                             <button class="publish" data-id="<?= $article['id'] ?>">Publish</button>
 
-                        <?php endif; ?>
+                        <?php endif; 
+                       ?>
                     </td>
+                    
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <?php require '../includes/pagination.php'; ?>
+
+   
+<?php require '../includes/pagination.php'; ?>
 
 <?php endif; ?>
 
 <?php require '../includes/footer.php'; ?>
+

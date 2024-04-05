@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($article->update($conn)) {
 
-        $article->setCategories($conn, $category_ids);
+       $article->setCategories($conn, $category_ids);
 
         Url::redirect("/www/admin/article.php?id={$article->id}");
 
-    }
+   }
 }
 
 ?>

@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Category::delete($conn, $category['id']);
-    Url::redirect("/admin");
+    Url::redirect("www/admin");
 }
 
 ?>

@@ -9,7 +9,7 @@
 <form method="post" id="formArticle">
 
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title" >Title</label>
         <input class="form-control" name="title" id="title" placeholder="Article title" value="<?= !is_null($article->title) ? htmlspecialchars($article->title) : '' ?>">
     </div>
 
@@ -36,6 +36,6 @@
         
     </fieldset>
 
-    <button class="btn">Save</button>
+    <button class="btn btn-success">Save</button>
 
 </form>

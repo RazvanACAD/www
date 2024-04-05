@@ -49,6 +49,11 @@ class Category
                 }
         }
 
+        public static function getTotal($conn)
+        {
+                return $conn->query("SELECT COUNT(*) FROM category")->fetchColumn();
+        }
+
         /**
          * Find a category by its ID
          *
@@ -107,6 +112,38 @@ class Category
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
+        }
+
+        public static function getCategory($conn, $limit, $offset)
+        {
+                $sql = "SELECT category.id, category.name AS category_name
+                FROM category
+                ORDER BY category.name
+                LIMIT :limit
+                OFFSET :offset";
+        
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+                $stmt->execute();
+
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                $categories = [];
+                $previous_id = null;
+
+                foreach ($results as $row) {
+                       $category_id = $row['id'];
+                        if ($category_id != $previous_id) {
+                                $categories[] = [
+                                        'id' => $row['id'],
+                                        'name' => $row['category_name']
+                                ];
+                        }
+                        $previous_id = $category_id;
+                }
+                return $categories;
         }
         
 }
